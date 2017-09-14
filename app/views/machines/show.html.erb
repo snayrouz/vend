@@ -1,1 +1,14 @@
 <h1><%= @machine.location %> Vending Machine</h1>
+
+<table>
+  <thead>
+    <th>Snack</th>
+    <th>Price</th>
+  </thead>
+  <tbody>
+    <tr><% @snacks.each do |snack|  %></tr>
+      <td> <%= snack.name %></td>
+      <td> <%= snack.price.to_f %></td>
+      <% end %>
+  </tbody>
+</table>
