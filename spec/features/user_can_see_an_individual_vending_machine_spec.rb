@@ -20,6 +20,18 @@ feature 'When a user visits a vending machine show page' do
     expect(page).to have_content("Snickers")
     expect(page).to have_content(2.59)
   end
+
+  scenario 'they see an average price for all snacks of that machine' do
+    owner = Owner.create(name: "Sam's Snacks")
+    dons  = owner.machines.create(location: "Don's Mixed Drinks")
+    snack = dons.snacks.create(name: "Snickers", price: 2.50)
+    snack2 = dons.snacks.create(name: "Cheetos", price: 3.50)
+    snack3 = dons.snacks.create(name: "Pop Rocks", price: 1.50)
+
+    visit machine_path(dons)
+
+    expect(page).to have_content(machine.snacks.average_price)
+  end
 end
 
 
